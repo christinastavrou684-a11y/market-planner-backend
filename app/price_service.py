@@ -42,6 +42,9 @@ def _fetch_price(ingredient_name: str, supermarket: str):
         return None
 
     prices = [r["price"] for r in results if r.get("price")]
+    # βασικός έλεγχος λογικότητας -- απορρίπτουμε ύποπτα ακραίες τιμές που
+    # πιθανόν προέρχονται από λάθος αντιστοίχιση προϊόντος
+    prices = [p for p in prices if 0.10 <= p <= 60]
     if not prices:
         return None
 

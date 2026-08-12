@@ -34,6 +34,8 @@ MEAL_DATA_KEY = {
 
 DAYS = ["Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο", "Κυριακή"]
 
+MAX_REPEATS_PER_WEEK = 2  # καμία συνταγή δεν εμφανίζεται πάνω από τόσες φορές/εβδομάδα στο ίδιο γεύμα
+
 GENDER_FACTOR = {
     "male": 1.15,
     "female": 0.90,
@@ -171,11 +173,18 @@ def build_weekly_plan(
 
     plan_ids = {day: {} for day in DAYS}
     recent_by_meal = {meal: [] for meal in MEAL_ORDER}
+    usage_count = {meal: defaultdict(int) for meal in MEAL_ORDER}
 
     for day in DAYS:
         for meal in MEAL_ORDER:
             pool = meal_pools[meal]
-            candidates = [r for r in pool if r["id"] not in recent_by_meal[meal][-2:]]
+            candidates = [
+                r for r in pool
+                if r["id"] not in recent_by_meal[meal][-2:]
+                and usage_count[meal][r["id"]] < MAX_REPEATS_PER_WEEK
+            ]
+            if not candidates:
+                candidates = [r for r in pool if r["id"] not in recent_by_meal[meal][-2:]]
             if not candidates:
                 candidates = pool
 
@@ -192,6 +201,7 @@ def build_weekly_plan(
 
             plan_ids[day][meal] = chosen["id"]
             recent_by_meal[meal].append(chosen["id"])
+            usage_count[meal][chosen["id"]] += 1
 
     result = assemble_plan(
         plan_ids, data, household_size, gender, diet_type, supermarket,
@@ -260,17 +270,32 @@ def _repair_budget(plan, meal_pools, household_size, gender, weekly_budget, live
     )
     if running_total <= weekly_budget:
         return
+
+    usage_count = {meal: defaultdict(int) for meal in MEAL_ORDER}
+    for day in DAYS:
+        for meal in MEAL_ORDER:
+            usage_count[meal][plan[day][meal]["recipe_id"]] += 1
+
     all_slots = [(day, meal) for day in DAYS for meal in MEAL_ORDER]
     all_slots.sort(key=lambda s: plan[s[0]][s[1]]["estimated_cost"], reverse=True)
     for day, meal in all_slots:
         if running_total <= weekly_budget:
             break
         pool = meal_pools[meal]
-        cheapest = min(pool, key=lambda r: recipe_cost(r, household_size, gender, live_prices))
+        current_id = plan[day][meal]["recipe_id"]
+
+        # προτιμάμε τη φθηνότερη εναλλακτική που δεν έχει ήδη φτάσει το όριο
+        # επαναλήψεων· αν όλες το έχουν φτάσει, δεχόμαστε οποιαδήποτε φθηνότερη
+        under_cap = [r for r in pool if usage_count[meal][r["id"]] < MAX_REPEATS_PER_WEEK]
+        candidates_pool = under_cap if under_cap else pool
+
+        cheapest = min(candidates_pool, key=lambda r: recipe_cost(r, household_size, gender, live_prices))
         cheapest_cost = recipe_cost(cheapest, household_size, gender, live_prices)
         current_cost = plan[day][meal]["estimated_cost"]
         if cheapest_cost < current_cost:
             running_total = round(running_total - current_cost + cheapest_cost, 2)
+            usage_count[meal][current_id] -= 1
+            usage_count[meal][cheapest["id"]] += 1
             plan[day][meal] = {
                 "recipe_id": cheapest["id"],
                 "name": cheapest["name"],
