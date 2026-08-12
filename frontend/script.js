@@ -1,11 +1,8 @@
 const DAY_ORDER = ["Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο", "Κυριακή"];
 const MEAL_ORDER = ["breakfast", "snack_morning", "lunch", "snack_afternoon", "dinner"];
 const MEAL_LABELS = {
-  breakfast: "Πρωινό",
-  snack_morning: "Δεκατιανό",
-  lunch: "Μεσημεριανό",
-  snack_afternoon: "Απογευματινό",
-  dinner: "Βραδινό",
+  breakfast: "Πρωινό", snack_morning: "Δεκατιανό", lunch: "Μεσημεριανό",
+  snack_afternoon: "Απογευματινό", dinner: "Βραδινό",
 };
 const SUPERMARKET_LABELS = { sklavenitis: "Σκλαβενίτης", mymarket: "My Market" };
 const DIET_LABELS = { classic: "Κλασική", vegetarian: "Vegetarian", vegan: "Vegan" };
@@ -22,8 +19,6 @@ const receiptItems = document.getElementById("receipt-items");
 const receiptTotal = document.getElementById("receipt-total");
 const receiptFooter = document.getElementById("receipt-footer");
 
-// Κρατάει τις τρέχουσες παραμέτρους + το πλάνο (recipe_id ανά ημέρα/γεύμα)
-// ώστε να μπορούμε να ζητήσουμε swap ενός μεμονωμένου γεύματος αργότερα.
 let currentParams = null;
 let currentData = null;
 
@@ -38,11 +33,7 @@ async function runSuggest() {
   submitBtn.textContent = "Φτιάχνω το πλάνο...";
 
   const excludedRaw = document.getElementById("excluded_ingredients").value;
-  const excluded = excludedRaw
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-
+  const excluded = excludedRaw.split(",").map((s) => s.trim()).filter(Boolean);
   const maxKcalRaw = document.getElementById("max_daily_kcal").value;
 
   currentParams = {
@@ -53,6 +44,7 @@ async function runSuggest() {
     supermarket: document.getElementById("supermarket").value,
     excluded_ingredients: excluded,
     max_daily_kcal: maxKcalRaw ? parseFloat(maxKcalRaw) : null,
+    gluten_free: document.getElementById("gluten_free").checked,
   };
 
   try {
@@ -61,11 +53,7 @@ async function runSuggest() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(currentParams),
     });
-
-    if (!res.ok) {
-      throw new Error(`Το API επέστρεψε σφάλμα (${res.status})`);
-    }
-
+    if (!res.ok) throw new Error(`Το API επέστρεψε σφάλμα (${res.status})`);
     currentData = await res.json();
     renderAll(currentData);
     resultPanel.hidden = false;
@@ -87,9 +75,7 @@ async function swapMeal(day, meal) {
   }
 
   const payload = {
-    plan_recipe_ids: planRecipeIds,
-    day,
-    meal,
+    plan_recipe_ids: planRecipeIds, day, meal,
     diet_type: currentParams.diet_type,
     household_size: currentParams.household_size,
     gender: currentParams.gender,
@@ -97,6 +83,7 @@ async function swapMeal(day, meal) {
     weekly_budget: currentParams.weekly_budget,
     excluded_ingredients: currentParams.excluded_ingredients,
     max_daily_kcal: currentParams.max_daily_kcal,
+    gluten_free: currentParams.gluten_free,
   };
 
   try {
@@ -106,7 +93,6 @@ async function swapMeal(day, meal) {
       body: JSON.stringify(payload),
     });
     if (!res.ok) throw new Error(`Το API επέστρεψε σφάλμα (${res.status})`);
-
     currentData = await res.json();
     renderAll(currentData);
   } catch (err) {
@@ -152,16 +138,21 @@ function renderPlan(data) {
 
     const header = document.createElement("div");
     header.className = "day-header";
-    header.innerHTML = `<span>${day}</span><span class="day-kcal">${data.daily_kcal[day]} kcal</span>`;
+    const dm = data.daily_macros[day];
+    header.innerHTML = `
+      <span>${day}</span>
+      <span class="day-stats">
+        <span class="day-kcal">${data.daily_kcal[day]} kcal</span>
+        <span class="day-macros">Π ${dm.protein}γ · Υ ${dm.carbs}γ · Λ ${dm.fat}γ</span>
+      </span>
+    `;
     row.appendChild(header);
 
     for (const mealKey of MEAL_ORDER) {
       const meal = dayData[mealKey];
       if (!meal) continue;
 
-      const ingredientsText = meal.ingredients
-        .map((ing) => formatIngredient(ing))
-        .join(" · ");
+      const ingredientsText = meal.ingredients.map((ing) => formatIngredient(ing)).join(" · ");
 
       const mealRow = document.createElement("div");
       mealRow.className = "meal-row";
@@ -172,8 +163,8 @@ function renderPlan(data) {
           <span class="meal-ingredients">${ingredientsText}</span>
         </span>
         <span class="meal-stats">
-          <span class="meal-cost">${meal.estimated_cost.toFixed(2)}€</span>
           <span class="meal-kcal">${meal.kcal} kcal</span>
+          <span class="meal-macros">Π${meal.macros.protein} Υ${meal.macros.carbs} Λ${meal.macros.fat}</span>
           <button type="button" class="swap-btn" title="Άλλαξε αυτό το γεύμα">🔄 αλλαγή</button>
         </span>
       `;
@@ -189,25 +180,22 @@ function formatQty(q) {
   return q >= 1 ? q.toFixed(1).replace(/\.0$/, "") : q;
 }
 
-// Ενδεικτικά "σπιτικά" μέτρα για επιλεγμένα υλικά, ώστε να μη μένουν μόνο
-// σε γραμμάρια/ml (π.χ. "30ml (2 κουταλιές) Ελαιόλαδο").
 const TABLESPOON_ML = 15;
 const CUP_ML = 240;
-const TABLESPOON_G = 20; // π.χ. μέλι
+const TABLESPOON_G = 20;
 
 const LIQUID_HINTS = {
   "Ελαιόλαδο": (ml) => tbspHint(ml / TABLESPOON_ML, "κουταλιά", "κουταλιές"),
   "Γάλα": (ml) => tbspHint(ml / CUP_ML, "ποτήρι", "ποτήρια"),
   "Φυτικό γάλα": (ml) => tbspHint(ml / CUP_ML, "ποτήρι", "ποτήρια"),
 };
-
 const SOLID_HINTS = {
   "Μέλι": (g) => tbspHint(g / TABLESPOON_G, "κουταλιά", "κουταλιές"),
 };
 
 function tbspHint(count, singular, plural) {
   if (count < 0.4) return null;
-  const rounded = Math.round(count * 2) / 2; // στρογγυλοποίηση στο μισό
+  const rounded = Math.round(count * 2) / 2;
   const label = rounded === 1 ? singular : plural;
   const numText = Number.isInteger(rounded) ? rounded : rounded.toFixed(1);
   return `${numText} ${label}`;
@@ -215,24 +203,20 @@ function tbspHint(count, singular, plural) {
 
 function formatIngredient(ing) {
   const { name, unit, quantity } = ing;
-
   if (unit === "kg") {
     const grams = Math.round((quantity * 1000) / 5) * 5;
     const hint = SOLID_HINTS[name] ? SOLID_HINTS[name](grams) : null;
     return hint ? `${grams}γρ (${hint}) ${name}` : `${grams}γρ ${name}`;
   }
-
   if (unit === "l") {
     const ml = Math.round((quantity * 1000) / 5) * 5;
     const hint = LIQUID_HINTS[name] ? LIQUID_HINTS[name](ml) : null;
     return hint ? `${ml}ml (${hint}) ${name}` : `${ml}ml ${name}`;
   }
-
   if (unit === "τεμ") {
     const rounded = Math.max(1, Math.round(quantity));
     return `${rounded}τεμ ${name}`;
   }
-
   return `${formatQty(quantity)}${unit} ${name}`;
 }
 
@@ -259,15 +243,8 @@ function renderReceipt(data) {
   }
 
   receiptTotal.innerHTML = `
-    <div class="line grand">
-      <span>ΣΥΝΟΛΟ</span>
-      <span>${data.estimated_total_cost.toFixed(2)}€</span>
-    </div>
-    <div class="line remaining">
-      <span>Διαφορά από budget</span>
-      <span>${data.remaining_budget.toFixed(2)}€</span>
-    </div>
+    <div class="line grand"><span>ΣΥΝΟΛΟ</span><span>${data.estimated_total_cost.toFixed(2)}€</span></div>
+    <div class="line remaining"><span>Διαφορά από budget</span><span>${data.remaining_budget.toFixed(2)}€</span></div>
   `;
-
   receiptFooter.textContent = "ΕΚΤΙΜΩΜΕΝΕΣ ΤΙΜΕΣ · ΟΧΙ ΤΕΛΙΚΕΣ";
 }

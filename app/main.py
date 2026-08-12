@@ -12,7 +12,7 @@ from .engine import (
 from .scraper_sklavenitis import search_sklavenitis
 from .scraper_mymarket import search_mymarket
 
-app = FastAPI(title="Market Planner API", version="0.4.0")
+app = FastAPI(title="Market Planner API", version="0.5.0")
 
 FRONTEND_DIR = Path(__file__).parent.parent / "frontend"
 
@@ -48,7 +48,6 @@ def scrape_test_mymarket(query: str, max_results: int = 5):
 
 @app.post("/suggest")
 def suggest(request: SuggestRequest):
-    # Βήμα 1: επιλογή γευμάτων με εκτιμώμενες τιμές (γρήγορο, χωρίς δίκτυο)
     result = build_weekly_plan(
         weekly_budget=request.weekly_budget,
         diet_type=request.diet_type,
@@ -58,12 +57,12 @@ def suggest(request: SuggestRequest):
         excluded_ingredients=request.excluded_ingredients,
         max_daily_kcal=request.max_daily_kcal,
         live_prices=None,
+        gluten_free=request.gluten_free,
     )
 
     if not request.use_live_prices:
         return result
 
-    # Βήμα 2: ξαναϋπολογισμός ΜΟΝΟ με τα υλικά που χρειάζεται αυτό το πλάνο
     data = load_recipes()
     plan_ids = _extract_plan_ids(result)
     return add_live_prices_to_plan(
@@ -76,6 +75,7 @@ def suggest(request: SuggestRequest):
         weekly_budget=request.weekly_budget,
         excluded_ingredients=request.excluded_ingredients,
         max_daily_kcal=request.max_daily_kcal,
+        gluten_free=request.gluten_free,
     )
 
 
@@ -91,6 +91,7 @@ def swap_meal(request: SwapMealRequest):
         household_size=request.household_size,
         gender=request.gender,
         excluded_ingredients=request.excluded_ingredients,
+        gluten_free=request.gluten_free,
     )
 
     updated_plan_ids = {
@@ -113,6 +114,7 @@ def swap_meal(request: SwapMealRequest):
             max_daily_kcal=request.max_daily_kcal,
             apply_repairs=False,
             live_prices=None,
+            gluten_free=request.gluten_free,
         )
 
     return add_live_prices_to_plan(
@@ -125,9 +127,8 @@ def swap_meal(request: SwapMealRequest):
         weekly_budget=request.weekly_budget,
         excluded_ingredients=request.excluded_ingredients,
         max_daily_kcal=request.max_daily_kcal,
+        gluten_free=request.gluten_free,
     )
 
 
-# Σερβίρει το frontend (index.html, style.css, script.js) στο "/".
-# Πρέπει να μπει ΜΕΤΑ τα άλλα endpoints ώστε αυτά να έχουν προτεραιότητα.
 app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")

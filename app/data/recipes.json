@@ -5,7 +5,8 @@
       "name": "Γάλα με δημητριακά",
       "diet_types": [
         "classic",
-        "vegetarian"
+        "vegetarian",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -15,7 +16,10 @@
           "package_size": 1,
           "package_unit": "l",
           "package_cost": 1.1,
-          "kcal_per_unit": 640
+          "kcal_per_unit": 640,
+          "protein_g_per_unit": 34,
+          "carbs_g_per_unit": 48,
+          "fat_g_per_unit": 36
         },
         {
           "name": "Δημητριακά",
@@ -25,7 +29,10 @@
           "package_unit": "kg",
           "package_cost": 3.2,
           "kcal_per_unit": 3800,
-          "weeks_per_package": 2
+          "weeks_per_package": 2,
+          "protein_g_per_unit": 80,
+          "carbs_g_per_unit": 750,
+          "fat_g_per_unit": 50
         }
       ]
     },
@@ -43,7 +50,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 2.2,
-          "kcal_per_unit": 2650
+          "kcal_per_unit": 2650,
+          "protein_g_per_unit": 90,
+          "carbs_g_per_unit": 500,
+          "fat_g_per_unit": 30
         },
         {
           "name": "Τυρί τοστ",
@@ -52,7 +62,10 @@
           "package_size": 0.2,
           "package_unit": "kg",
           "package_cost": 3.0,
-          "kcal_per_unit": 3300
+          "kcal_per_unit": 3300,
+          "protein_g_per_unit": 200,
+          "carbs_g_per_unit": 20,
+          "fat_g_per_unit": 250
         },
         {
           "name": "Γαλοπούλα",
@@ -61,7 +74,10 @@
           "package_size": 0.15,
           "package_unit": "kg",
           "package_cost": 3.5,
-          "kcal_per_unit": 1100
+          "kcal_per_unit": 1100,
+          "protein_g_per_unit": 200,
+          "carbs_g_per_unit": 20,
+          "fat_g_per_unit": 30
         }
       ]
     },
@@ -80,7 +96,10 @@
           "package_size": 6,
           "package_unit": "τεμ",
           "package_cost": 1.8,
-          "kcal_per_unit": 70
+          "kcal_per_unit": 70,
+          "protein_g_per_unit": 6,
+          "carbs_g_per_unit": 0.5,
+          "fat_g_per_unit": 5
         },
         {
           "name": "Ψωμί",
@@ -89,7 +108,10 @@
           "package_size": 0.4,
           "package_unit": "kg",
           "package_cost": 1.8,
-          "kcal_per_unit": 2500
+          "kcal_per_unit": 2500,
+          "protein_g_per_unit": 80,
+          "carbs_g_per_unit": 500,
+          "fat_g_per_unit": 20
         }
       ]
     },
@@ -98,7 +120,8 @@
       "name": "Γιαούρτι με μέλι & καρύδια",
       "diet_types": [
         "classic",
-        "vegetarian"
+        "vegetarian",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -108,7 +131,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 4.2,
-          "kcal_per_unit": 1000
+          "kcal_per_unit": 1000,
+          "protein_g_per_unit": 90,
+          "carbs_g_per_unit": 40,
+          "fat_g_per_unit": 50
         },
         {
           "name": "Μέλι",
@@ -118,7 +144,10 @@
           "package_unit": "kg",
           "package_cost": 5.5,
           "kcal_per_unit": 3040,
-          "weeks_per_package": 6
+          "weeks_per_package": 6,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 820,
+          "fat_g_per_unit": 0
         },
         {
           "name": "Καρύδια",
@@ -128,7 +157,10 @@
           "package_unit": "kg",
           "package_cost": 4.5,
           "kcal_per_unit": 6540,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 150,
+          "carbs_g_per_unit": 140,
+          "fat_g_per_unit": 650
         }
       ]
     },
@@ -147,7 +179,10 @@
           "package_size": 1,
           "package_unit": "τεμ",
           "package_cost": 0.9,
-          "kcal_per_unit": 230
+          "kcal_per_unit": 230,
+          "protein_g_per_unit": 6,
+          "carbs_g_per_unit": 45,
+          "fat_g_per_unit": 3
         },
         {
           "name": "Τυρί",
@@ -156,7 +191,10 @@
           "package_size": 0.2,
           "package_unit": "kg",
           "package_cost": 3.2,
-          "kcal_per_unit": 3200
+          "kcal_per_unit": 3200,
+          "protein_g_per_unit": 220,
+          "carbs_g_per_unit": 20,
+          "fat_g_per_unit": 280
         }
       ]
     },
@@ -166,7 +204,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -176,7 +215,10 @@
           "package_size": 1,
           "package_unit": "τεμ",
           "package_cost": 0.35,
-          "kcal_per_unit": 105
+          "kcal_per_unit": 105,
+          "protein_g_per_unit": 1.3,
+          "carbs_g_per_unit": 27,
+          "fat_g_per_unit": 0.3
         },
         {
           "name": "Φυτικό γάλα",
@@ -185,7 +227,10 @@
           "package_size": 1,
           "package_unit": "l",
           "package_cost": 1.8,
-          "kcal_per_unit": 450
+          "kcal_per_unit": 450,
+          "protein_g_per_unit": 10,
+          "carbs_g_per_unit": 70,
+          "fat_g_per_unit": 15
         },
         {
           "name": "Βρώμη",
@@ -195,7 +240,10 @@
           "package_unit": "kg",
           "package_cost": 2.2,
           "kcal_per_unit": 3890,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 130,
+          "carbs_g_per_unit": 680,
+          "fat_g_per_unit": 70
         }
       ]
     }
@@ -207,7 +255,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -217,7 +266,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 2.0,
-          "kcal_per_unit": 520
+          "kcal_per_unit": 520,
+          "protein_g_per_unit": 7,
+          "carbs_g_per_unit": 130,
+          "fat_g_per_unit": 3
         }
       ]
     },
@@ -226,7 +278,8 @@
       "name": "Γιαούρτι με μέλι (light)",
       "diet_types": [
         "classic",
-        "vegetarian"
+        "vegetarian",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -236,7 +289,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 4.2,
-          "kcal_per_unit": 1000
+          "kcal_per_unit": 1000,
+          "protein_g_per_unit": 90,
+          "carbs_g_per_unit": 40,
+          "fat_g_per_unit": 50
         },
         {
           "name": "Μέλι",
@@ -246,7 +302,10 @@
           "package_unit": "kg",
           "package_cost": 5.5,
           "kcal_per_unit": 3040,
-          "weeks_per_package": 6
+          "weeks_per_package": 6,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 820,
+          "fat_g_per_unit": 0
         }
       ]
     },
@@ -256,7 +315,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -267,7 +327,10 @@
           "package_unit": "kg",
           "package_cost": 4.5,
           "kcal_per_unit": 6540,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 150,
+          "carbs_g_per_unit": 140,
+          "fat_g_per_unit": 650
         }
       ]
     },
@@ -288,7 +351,10 @@
           "package_unit": "kg",
           "package_cost": 2.2,
           "kcal_per_unit": 3350,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 100,
+          "carbs_g_per_unit": 680,
+          "fat_g_per_unit": 20
         },
         {
           "name": "Ντομάτες",
@@ -297,7 +363,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 2.2,
-          "kcal_per_unit": 180
+          "kcal_per_unit": 180,
+          "protein_g_per_unit": 9,
+          "carbs_g_per_unit": 39,
+          "fat_g_per_unit": 2
         },
         {
           "name": "Ελαιόλαδο",
@@ -307,7 +376,10 @@
           "package_unit": "l",
           "package_cost": 7.5,
           "kcal_per_unit": 8130,
-          "weeks_per_package": 4
+          "weeks_per_package": 4,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 920
         }
       ]
     },
@@ -317,7 +389,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -328,7 +401,10 @@
           "package_unit": "kg",
           "package_cost": 1.5,
           "kcal_per_unit": 3870,
-          "weeks_per_package": 2
+          "weeks_per_package": 2,
+          "protein_g_per_unit": 80,
+          "carbs_g_per_unit": 800,
+          "fat_g_per_unit": 30
         },
         {
           "name": "Φυστικοβούτυρο",
@@ -338,7 +414,10 @@
           "package_unit": "kg",
           "package_cost": 4.5,
           "kcal_per_unit": 5880,
-          "weeks_per_package": 4
+          "weeks_per_package": 4,
+          "protein_g_per_unit": 250,
+          "carbs_g_per_unit": 200,
+          "fat_g_per_unit": 500
         }
       ]
     },
@@ -348,7 +427,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -358,7 +438,10 @@
           "package_size": 1,
           "package_unit": "τεμ",
           "package_cost": 0.35,
-          "kcal_per_unit": 105
+          "kcal_per_unit": 105,
+          "protein_g_per_unit": 1.3,
+          "carbs_g_per_unit": 27,
+          "fat_g_per_unit": 0.3
         },
         {
           "name": "Φυτικό γάλα",
@@ -367,7 +450,10 @@
           "package_size": 1,
           "package_unit": "l",
           "package_cost": 1.8,
-          "kcal_per_unit": 450
+          "kcal_per_unit": 450,
+          "protein_g_per_unit": 10,
+          "carbs_g_per_unit": 70,
+          "fat_g_per_unit": 15
         }
       ]
     },
@@ -387,7 +473,10 @@
           "package_unit": "kg",
           "package_cost": 1.8,
           "kcal_per_unit": 4300,
-          "weeks_per_package": 2
+          "weeks_per_package": 2,
+          "protein_g_per_unit": 100,
+          "carbs_g_per_unit": 650,
+          "fat_g_per_unit": 150
         },
         {
           "name": "Τυρί",
@@ -396,7 +485,10 @@
           "package_size": 0.2,
           "package_unit": "kg",
           "package_cost": 3.2,
-          "kcal_per_unit": 3200
+          "kcal_per_unit": 3200,
+          "protein_g_per_unit": 220,
+          "carbs_g_per_unit": 20,
+          "fat_g_per_unit": 280
         }
       ]
     },
@@ -406,7 +498,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -417,7 +510,10 @@
           "package_unit": "kg",
           "package_cost": 3.5,
           "kcal_per_unit": 3000,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 40,
+          "carbs_g_per_unit": 700,
+          "fat_g_per_unit": 10
         }
       ]
     }
@@ -427,7 +523,8 @@
       "id": "l1",
       "name": "Κοτόπουλο με πατάτες φούρνου",
       "diet_types": [
-        "classic"
+        "classic",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -437,7 +534,10 @@
           "package_size": 0.6,
           "package_unit": "kg",
           "package_cost": 5.5,
-          "kcal_per_unit": 2150
+          "kcal_per_unit": 2150,
+          "protein_g_per_unit": 180,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 150
         },
         {
           "name": "Πατάτες",
@@ -446,7 +546,10 @@
           "package_size": 2,
           "package_unit": "kg",
           "package_cost": 2.2,
-          "kcal_per_unit": 770
+          "kcal_per_unit": 770,
+          "protein_g_per_unit": 20,
+          "carbs_g_per_unit": 170,
+          "fat_g_per_unit": 1
         },
         {
           "name": "Ελαιόλαδο",
@@ -456,7 +559,10 @@
           "package_unit": "l",
           "package_cost": 7.5,
           "kcal_per_unit": 8130,
-          "weeks_per_package": 4
+          "weeks_per_package": 4,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 920
         }
       ]
     },
@@ -475,7 +581,10 @@
           "package_unit": "kg",
           "package_cost": 1.2,
           "kcal_per_unit": 3500,
-          "weeks_per_package": 2
+          "weeks_per_package": 2,
+          "protein_g_per_unit": 130,
+          "carbs_g_per_unit": 750,
+          "fat_g_per_unit": 15
         },
         {
           "name": "Κιμάς μοσχαρίσιος",
@@ -484,7 +593,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 5.8,
-          "kcal_per_unit": 2500
+          "kcal_per_unit": 2500,
+          "protein_g_per_unit": 180,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 170
         },
         {
           "name": "Σάλτσα ντομάτας",
@@ -494,7 +606,10 @@
           "package_unit": "kg",
           "package_cost": 1.2,
           "kcal_per_unit": 600,
-          "weeks_per_package": 2
+          "weeks_per_package": 2,
+          "protein_g_per_unit": 15,
+          "carbs_g_per_unit": 100,
+          "fat_g_per_unit": 3
         }
       ]
     },
@@ -504,7 +619,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -515,7 +631,10 @@
           "package_unit": "kg",
           "package_cost": 1.8,
           "kcal_per_unit": 3520,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 240,
+          "carbs_g_per_unit": 600,
+          "fat_g_per_unit": 10
         },
         {
           "name": "Κρεμμύδι",
@@ -524,7 +643,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 1.2,
-          "kcal_per_unit": 400
+          "kcal_per_unit": 400,
+          "protein_g_per_unit": 11,
+          "carbs_g_per_unit": 90,
+          "fat_g_per_unit": 1
         },
         {
           "name": "Ελαιόλαδο",
@@ -534,7 +656,10 @@
           "package_unit": "l",
           "package_cost": 7.5,
           "kcal_per_unit": 8130,
-          "weeks_per_package": 4
+          "weeks_per_package": 4,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 920
         }
       ]
     },
@@ -544,7 +669,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -554,7 +680,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 2.2,
-          "kcal_per_unit": 180
+          "kcal_per_unit": 180,
+          "protein_g_per_unit": 9,
+          "carbs_g_per_unit": 39,
+          "fat_g_per_unit": 2
         },
         {
           "name": "Ρύζι",
@@ -564,7 +693,10 @@
           "package_unit": "kg",
           "package_cost": 1.8,
           "kcal_per_unit": 3650,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 70,
+          "carbs_g_per_unit": 800,
+          "fat_g_per_unit": 6
         },
         {
           "name": "Ελαιόλαδο",
@@ -574,7 +706,10 @@
           "package_unit": "l",
           "package_cost": 7.5,
           "kcal_per_unit": 8130,
-          "weeks_per_package": 4
+          "weeks_per_package": 4,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 920
         }
       ]
     },
@@ -582,7 +717,8 @@
       "id": "l5",
       "name": "Ψάρι με σαλάτα",
       "diet_types": [
-        "classic"
+        "classic",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -592,7 +728,10 @@
           "package_size": 0.3,
           "package_unit": "kg",
           "package_cost": 6.5,
-          "kcal_per_unit": 1050
+          "kcal_per_unit": 1050,
+          "protein_g_per_unit": 200,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 20
         },
         {
           "name": "Σαλάτα εποχής",
@@ -601,7 +740,10 @@
           "package_size": 0.3,
           "package_unit": "kg",
           "package_cost": 1.8,
-          "kcal_per_unit": 150
+          "kcal_per_unit": 150,
+          "protein_g_per_unit": 10,
+          "carbs_g_per_unit": 30,
+          "fat_g_per_unit": 2
         }
       ]
     },
@@ -611,7 +753,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -622,7 +765,10 @@
           "package_unit": "kg",
           "package_cost": 1.9,
           "kcal_per_unit": 3640,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 190,
+          "carbs_g_per_unit": 610,
+          "fat_g_per_unit": 60
         },
         {
           "name": "Ελαιόλαδο",
@@ -632,7 +778,10 @@
           "package_unit": "l",
           "package_cost": 7.5,
           "kcal_per_unit": 8130,
-          "weeks_per_package": 4
+          "weeks_per_package": 4,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 920
         },
         {
           "name": "Λεμόνι",
@@ -641,7 +790,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 1.0,
-          "kcal_per_unit": 290
+          "kcal_per_unit": 290,
+          "protein_g_per_unit": 10,
+          "carbs_g_per_unit": 90,
+          "fat_g_per_unit": 3
         }
       ]
     },
@@ -649,7 +801,8 @@
       "id": "l7",
       "name": "Μπριζόλα χοιρινή με ρύζι",
       "diet_types": [
-        "classic"
+        "classic",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -659,7 +812,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 4.2,
-          "kcal_per_unit": 2420
+          "kcal_per_unit": 2420,
+          "protein_g_per_unit": 190,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 170
         },
         {
           "name": "Ρύζι",
@@ -669,7 +825,10 @@
           "package_unit": "kg",
           "package_cost": 1.8,
           "kcal_per_unit": 3650,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 70,
+          "carbs_g_per_unit": 800,
+          "fat_g_per_unit": 6
         }
       ]
     },
@@ -679,7 +838,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -689,7 +849,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 1.9,
-          "kcal_per_unit": 610
+          "kcal_per_unit": 610,
+          "protein_g_per_unit": 15,
+          "carbs_g_per_unit": 140,
+          "fat_g_per_unit": 3
         },
         {
           "name": "Ρύζι",
@@ -699,7 +862,10 @@
           "package_unit": "kg",
           "package_cost": 1.8,
           "kcal_per_unit": 3650,
-          "weeks_per_package": 3
+          "weeks_per_package": 3,
+          "protein_g_per_unit": 70,
+          "carbs_g_per_unit": 800,
+          "fat_g_per_unit": 6
         },
         {
           "name": "Ελαιόλαδο",
@@ -709,7 +875,10 @@
           "package_unit": "l",
           "package_cost": 7.5,
           "kcal_per_unit": 8130,
-          "weeks_per_package": 4
+          "weeks_per_package": 4,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 920
         }
       ]
     }
@@ -720,7 +889,8 @@
       "name": "Ομελέτα με λαχανικά",
       "diet_types": [
         "classic",
-        "vegetarian"
+        "vegetarian",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -730,7 +900,10 @@
           "package_size": 6,
           "package_unit": "τεμ",
           "package_cost": 1.8,
-          "kcal_per_unit": 70
+          "kcal_per_unit": 70,
+          "protein_g_per_unit": 6,
+          "carbs_g_per_unit": 0.5,
+          "fat_g_per_unit": 5
         },
         {
           "name": "Πιπεριά",
@@ -739,7 +912,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 1.5,
-          "kcal_per_unit": 310
+          "kcal_per_unit": 310,
+          "protein_g_per_unit": 10,
+          "carbs_g_per_unit": 60,
+          "fat_g_per_unit": 3
         }
       ]
     },
@@ -749,7 +925,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -759,7 +936,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 1.6,
-          "kcal_per_unit": 350
+          "kcal_per_unit": 350,
+          "protein_g_per_unit": 20,
+          "carbs_g_per_unit": 70,
+          "fat_g_per_unit": 3
         },
         {
           "name": "Ελαιόλαδο",
@@ -769,7 +949,10 @@
           "package_unit": "l",
           "package_cost": 7.5,
           "kcal_per_unit": 8130,
-          "weeks_per_package": 4
+          "weeks_per_package": 4,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 920
         }
       ]
     },
@@ -788,7 +971,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 4.5,
-          "kcal_per_unit": 2900
+          "kcal_per_unit": 2900,
+          "protein_g_per_unit": 90,
+          "carbs_g_per_unit": 250,
+          "fat_g_per_unit": 180
         },
         {
           "name": "Σαλάτα εποχής",
@@ -797,7 +983,10 @@
           "package_size": 0.3,
           "package_unit": "kg",
           "package_cost": 1.8,
-          "kcal_per_unit": 150
+          "kcal_per_unit": 150,
+          "protein_g_per_unit": 10,
+          "carbs_g_per_unit": 30,
+          "fat_g_per_unit": 2
         }
       ]
     },
@@ -806,7 +995,8 @@
       "name": "Γιαούρτι με φρούτα",
       "diet_types": [
         "classic",
-        "vegetarian"
+        "vegetarian",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -816,7 +1006,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 4.2,
-          "kcal_per_unit": 1000
+          "kcal_per_unit": 1000,
+          "protein_g_per_unit": 90,
+          "carbs_g_per_unit": 40,
+          "fat_g_per_unit": 50
         },
         {
           "name": "Φρούτα εποχής",
@@ -825,7 +1018,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 2.0,
-          "kcal_per_unit": 520
+          "kcal_per_unit": 520,
+          "protein_g_per_unit": 7,
+          "carbs_g_per_unit": 130,
+          "fat_g_per_unit": 3
         }
       ]
     },
@@ -845,7 +1041,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 2.2,
-          "kcal_per_unit": 2650
+          "kcal_per_unit": 2650,
+          "protein_g_per_unit": 90,
+          "carbs_g_per_unit": 500,
+          "fat_g_per_unit": 30
         },
         {
           "name": "Λαχανικά (πιπεριά/ντομάτα)",
@@ -854,7 +1053,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 1.8,
-          "kcal_per_unit": 250
+          "kcal_per_unit": 250,
+          "protein_g_per_unit": 10,
+          "carbs_g_per_unit": 60,
+          "fat_g_per_unit": 2
         }
       ]
     },
@@ -864,7 +1066,8 @@
       "diet_types": [
         "classic",
         "vegetarian",
-        "vegan"
+        "vegan",
+        "gluten_free"
       ],
       "ingredients": [
         {
@@ -874,7 +1077,10 @@
           "package_size": 0.2,
           "package_unit": "kg",
           "package_cost": 2.2,
-          "kcal_per_unit": 1660
+          "kcal_per_unit": 1660,
+          "protein_g_per_unit": 80,
+          "carbs_g_per_unit": 140,
+          "fat_g_per_unit": 100
         },
         {
           "name": "Καρότο/Αγγούρι",
@@ -883,7 +1089,10 @@
           "package_size": 1,
           "package_unit": "kg",
           "package_cost": 1.6,
-          "kcal_per_unit": 200
+          "kcal_per_unit": 200,
+          "protein_g_per_unit": 8,
+          "carbs_g_per_unit": 40,
+          "fat_g_per_unit": 1.5
         }
       ]
     },
@@ -904,7 +1113,10 @@
           "package_unit": "kg",
           "package_cost": 1.2,
           "kcal_per_unit": 3500,
-          "weeks_per_package": 2
+          "weeks_per_package": 2,
+          "protein_g_per_unit": 130,
+          "carbs_g_per_unit": 750,
+          "fat_g_per_unit": 15
         },
         {
           "name": "Λαχανικά (μείγμα)",
@@ -913,7 +1125,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 1.8,
-          "kcal_per_unit": 350
+          "kcal_per_unit": 350,
+          "protein_g_per_unit": 20,
+          "carbs_g_per_unit": 70,
+          "fat_g_per_unit": 3
         },
         {
           "name": "Ελαιόλαδο",
@@ -923,7 +1138,10 @@
           "package_unit": "l",
           "package_cost": 7.5,
           "kcal_per_unit": 8130,
-          "weeks_per_package": 4
+          "weeks_per_package": 4,
+          "protein_g_per_unit": 0,
+          "carbs_g_per_unit": 0,
+          "fat_g_per_unit": 920
         }
       ]
     },
@@ -941,7 +1159,10 @@
           "package_size": 0.5,
           "package_unit": "kg",
           "package_cost": 2.2,
-          "kcal_per_unit": 2650
+          "kcal_per_unit": 2650,
+          "protein_g_per_unit": 90,
+          "carbs_g_per_unit": 500,
+          "fat_g_per_unit": 30
         },
         {
           "name": "Γαλοπούλα",
@@ -950,7 +1171,10 @@
           "package_size": 0.15,
           "package_unit": "kg",
           "package_cost": 3.5,
-          "kcal_per_unit": 1100
+          "kcal_per_unit": 1100,
+          "protein_g_per_unit": 200,
+          "carbs_g_per_unit": 20,
+          "fat_g_per_unit": 30
         },
         {
           "name": "Τυρί",
@@ -959,7 +1183,10 @@
           "package_size": 0.2,
           "package_unit": "kg",
           "package_cost": 3.2,
-          "kcal_per_unit": 3200
+          "kcal_per_unit": 3200,
+          "protein_g_per_unit": 220,
+          "carbs_g_per_unit": 20,
+          "fat_g_per_unit": 280
         }
       ]
     }

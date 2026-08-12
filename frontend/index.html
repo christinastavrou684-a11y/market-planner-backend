@@ -31,7 +31,7 @@
 
         <label class="field">
           <span>Άτομα στο νοικοκυριό</span>
-          <input type="number" id="household_size" min="1" step="1" value="2" required>
+          <input type="number" id="household_size" min="1" step="1" value="1" required>
         </label>
 
         <label class="field">
@@ -66,7 +66,12 @@
 
         <label class="field">
           <span>Μέγιστες ημερήσιες θερμίδες <em class="optional">(προαιρετικό)</em></span>
-          <input type="number" id="max_daily_kcal" min="800" step="50" placeholder="π.χ. 2000">
+          <input type="number" id="max_daily_kcal" min="1300" step="50" placeholder="π.χ. 2000">
+        </label>
+
+        <label class="field checkbox-field">
+          <input type="checkbox" id="gluten_free">
+          <span>Χωρίς γλουτένη</span>
         </label>
 
         <button type="submit" id="submit-btn">Φτιάξε το πλάνο μου</button>

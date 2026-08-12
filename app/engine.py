@@ -1,16 +1,5 @@
 """
-Recommendation engine (rules-based, v1.3).
-
-Παίρνει: εβδομαδιαίο budget, τύπο διατροφής, μέγεθος νοικοκυριού, φύλο,
-supermarket, εξαιρέσεις τροφίμων (αλλεργίες/δυσανεξίες), προαιρετικό όριο
-ημερήσιων θερμίδων, και προαιρετικά ένα dict με LIVE τιμές (από scraping).
-Επιστρέφει: πλήρες εβδομαδιαίο πλάνο 5 γευμάτων/ημέρα + λίστα ψωνιών ανά
-συσκευασία.
-
-Αν δοθεί live_prices, οι πραγματικές (scraped) τιμές αντικαθιστούν τις
-εκτιμήσεις (package_cost) υλικό-υλικό. Όπου δεν βρέθηκε live τιμή (ή δεν
-δόθηκε καθόλου live_prices), χρησιμοποιείται η εκτίμηση -- η εφαρμογή ποτέ
-δεν "σπάει" εξαιτίας αποτυχημένου scraping.
+Recommendation engine (rules-based, v1.4).
 """
 
 import json
@@ -34,7 +23,7 @@ MEAL_DATA_KEY = {
 
 DAYS = ["Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο", "Κυριακή"]
 
-MAX_REPEATS_PER_WEEK = 2  # καμία συνταγή δεν εμφανίζεται πάνω από τόσες φορές/εβδομάδα στο ίδιο γεύμα
+MAX_REPEATS_PER_WEEK = 2
 
 GENDER_FACTOR = {
     "male": 1.15,
@@ -65,8 +54,6 @@ def all_recipes_by_id(data):
 
 
 def all_ingredient_names(data) -> list:
-    """Όλα τα μοναδικά ονόματα υλικών στη βάση συνταγών -- χρήσιμο για να
-    ξέρουμε τι να ψάξουμε live."""
     names = set()
     for key in ("breakfast", "snacks", "lunch", "dinner"):
         for recipe in data[key]:
@@ -88,10 +75,8 @@ def effective_package_cost(ing: dict, live_prices: dict = None) -> float:
 
 
 def recipe_cost(recipe, household_size: int, gender: str, live_prices: dict = None) -> float:
-    """Κόστος συνταγής βάσει ΑΝΑΛΟΓΙΚΗΣ εβδομαδιαίας τιμής: ένα προϊόν
-    ντουλάπας (π.χ. λάδι που διαρκεί 4 εβδομάδες) μετράει μόνο το 1/4 της
-    τιμής συσκευασίας του σε αυτή την εβδομάδα -- έτσι δεν "καίει" όλο το
-    budget μιας εβδομάδας μια φορά κάθε πολλές εβδομάδες."""
+    """Κόστος συνταγής βάσει ΑΝΑΛΟΓΙΚΗΣ εβδομαδιαίας τιμής -- προϊόντα
+    ντουλάπας (weeks_per_package>1) μετράνε μόνο το αναλογικό τους μερίδιο."""
     mult = unit_multiplier(household_size, gender)
     total = 0.0
     for ing in recipe["ingredients"]:
@@ -108,6 +93,18 @@ def recipe_kcal(recipe, gender: str) -> int:
     for ing in recipe["ingredients"]:
         total += ing["quantity_per_person"] * factor * ing["kcal_per_unit"]
     return round(total)
+
+
+def recipe_macros(recipe, gender: str) -> dict:
+    """Πρωτεΐνη/υδατάνθρακες/λίπος ΑΝΑ ΑΤΟΜΟ, σε γραμμάρια."""
+    factor = GENDER_FACTOR.get(gender, 1.0)
+    protein = carbs = fat = 0.0
+    for ing in recipe["ingredients"]:
+        qty = ing["quantity_per_person"] * factor
+        protein += qty * ing.get("protein_g_per_unit", 0)
+        carbs += qty * ing.get("carbs_g_per_unit", 0)
+        fat += qty * ing.get("fat_g_per_unit", 0)
+    return {"protein": round(protein, 1), "carbs": round(carbs, 1), "fat": round(fat, 1)}
 
 
 def recipe_ingredients_per_person(recipe, gender: str):
@@ -127,6 +124,13 @@ def filter_by_diet(recipes: list, diet_type: str) -> list:
     return filtered if filtered else recipes
 
 
+def filter_gluten_free(recipes: list, gluten_free: bool) -> list:
+    if not gluten_free:
+        return recipes
+    filtered = [r for r in recipes if "gluten_free" in r["diet_types"]]
+    return filtered if filtered else recipes  # fallback αν αδειάσει εντελώς
+
+
 def filter_by_exclusions(recipes: list, excluded_ingredients: list) -> list:
     if not excluded_ingredients:
         return recipes
@@ -144,10 +148,11 @@ def filter_by_exclusions(recipes: list, excluded_ingredients: list) -> list:
     return [r for r in recipes if is_allowed(r)]
 
 
-def build_meal_pools(data, diet_type: str, excluded_ingredients: list):
+def build_meal_pools(data, diet_type: str, excluded_ingredients: list, gluten_free: bool = False):
     pools = {}
     for meal in MEAL_ORDER:
         base = filter_by_diet(data[MEAL_DATA_KEY[meal]], diet_type)
+        base = filter_gluten_free(base, gluten_free)
         without_exclusions = filter_by_exclusions(base, excluded_ingredients)
         pools[meal] = without_exclusions if without_exclusions else base
     return pools
@@ -162,10 +167,11 @@ def build_weekly_plan(
     excluded_ingredients: list = None,
     max_daily_kcal: float = None,
     live_prices: dict = None,
+    gluten_free: bool = False,
 ):
     excluded_ingredients = excluded_ingredients or []
     data = load_recipes()
-    meal_pools = build_meal_pools(data, diet_type, excluded_ingredients)
+    meal_pools = build_meal_pools(data, diet_type, excluded_ingredients, gluten_free)
 
     total_slots = len(DAYS) * len(MEAL_ORDER)
     avg_target = weekly_budget / total_slots
@@ -206,7 +212,7 @@ def build_weekly_plan(
     result = assemble_plan(
         plan_ids, data, household_size, gender, diet_type, supermarket,
         weekly_budget, excluded_ingredients, max_daily_kcal, meal_pools,
-        apply_repairs=True, live_prices=live_prices,
+        apply_repairs=True, live_prices=live_prices, gluten_free=gluten_free,
     )
     return result
 
@@ -214,11 +220,11 @@ def build_weekly_plan(
 def assemble_plan(
     plan_ids, data, household_size, gender, diet_type, supermarket,
     weekly_budget, excluded_ingredients, max_daily_kcal, meal_pools=None,
-    apply_repairs=False, live_prices=None,
+    apply_repairs=False, live_prices=None, gluten_free=False,
 ):
     recipes_by_id = all_recipes_by_id(data)
     if meal_pools is None:
-        meal_pools = build_meal_pools(data, diet_type, excluded_ingredients)
+        meal_pools = build_meal_pools(data, diet_type, excluded_ingredients, gluten_free)
 
     plan = {day: {} for day in DAYS}
     for day in DAYS:
@@ -229,6 +235,7 @@ def assemble_plan(
                 "name": recipe["name"],
                 "estimated_cost": recipe_cost(recipe, household_size, gender, live_prices),
                 "kcal": recipe_kcal(recipe, gender),
+                "macros": recipe_macros(recipe, gender),
                 "ingredients": recipe_ingredients_per_person(recipe, gender),
             }
 
@@ -243,6 +250,19 @@ def assemble_plan(
     daily_kcal = {day: sum(plan[day][meal]["kcal"] for meal in MEAL_ORDER) for day in DAYS}
     avg_daily_kcal = round(sum(daily_kcal.values()) / len(DAYS))
 
+    daily_macros = {}
+    for day in DAYS:
+        daily_macros[day] = {
+            "protein": round(sum(plan[day][meal]["macros"]["protein"] for meal in MEAL_ORDER), 1),
+            "carbs": round(sum(plan[day][meal]["macros"]["carbs"] for meal in MEAL_ORDER), 1),
+            "fat": round(sum(plan[day][meal]["macros"]["fat"] for meal in MEAL_ORDER), 1),
+        }
+    avg_daily_macros = {
+        "protein": round(sum(d["protein"] for d in daily_macros.values()) / len(DAYS), 1),
+        "carbs": round(sum(d["carbs"] for d in daily_macros.values()) / len(DAYS), 1),
+        "fat": round(sum(d["fat"] for d in daily_macros.values()) / len(DAYS), 1),
+    }
+
     note = NOTE_TEXT_LIVE if live_prices else NOTE_TEXT_ESTIMATED
 
     return {
@@ -252,12 +272,15 @@ def assemble_plan(
         "supermarket": supermarket,
         "excluded_ingredients": excluded_ingredients,
         "max_daily_kcal": max_daily_kcal,
+        "gluten_free": gluten_free,
         "weekly_budget": weekly_budget,
         "estimated_total_cost": packaged_total,
         "remaining_budget": round(weekly_budget - packaged_total, 2),
         "plan": plan,
         "daily_kcal": daily_kcal,
         "avg_daily_kcal": avg_daily_kcal,
+        "daily_macros": daily_macros,
+        "avg_daily_macros": avg_daily_macros,
         "shopping_list": shopping_list,
         "note": note,
         "live_prices_used": bool(live_prices),
@@ -284,8 +307,6 @@ def _repair_budget(plan, meal_pools, household_size, gender, weekly_budget, live
         pool = meal_pools[meal]
         current_id = plan[day][meal]["recipe_id"]
 
-        # προτιμάμε τη φθηνότερη εναλλακτική που δεν έχει ήδη φτάσει το όριο
-        # επαναλήψεων· αν όλες το έχουν φτάσει, δεχόμαστε οποιαδήποτε φθηνότερη
         under_cap = [r for r in pool if usage_count[meal][r["id"]] < MAX_REPEATS_PER_WEEK]
         candidates_pool = under_cap if under_cap else pool
 
@@ -301,6 +322,7 @@ def _repair_budget(plan, meal_pools, household_size, gender, weekly_budget, live
                 "name": cheapest["name"],
                 "estimated_cost": cheapest_cost,
                 "kcal": recipe_kcal(cheapest, gender),
+                "macros": recipe_macros(cheapest, gender),
                 "ingredients": recipe_ingredients_per_person(cheapest, gender),
             }
 
@@ -337,6 +359,7 @@ def _repair_calories(plan, meal_pools, household_size, gender, max_daily_kcal, l
                     "name": lightest["name"],
                     "estimated_cost": recipe_cost(lightest, household_size, gender, live_prices),
                     "kcal": lightest_kcal,
+                    "macros": recipe_macros(lightest, gender),
                     "ingredients": recipe_ingredients_per_person(lightest, gender),
                 }
 
@@ -344,30 +367,20 @@ def _repair_calories(plan, meal_pools, household_size, gender, max_daily_kcal, l
 def add_live_prices_to_plan(
     plan_ids, data, household_size, gender, diet_type, supermarket,
     weekly_budget, excluded_ingredients, max_daily_kcal, meal_pools=None,
+    gluten_free=False,
 ):
-    """Παίρνει ένα ΗΔΗ επιλεγμένο πλάνο (plan_ids -- recipe_id ανά ημέρα/γεύμα,
-    υπολογισμένο με εκτιμήσεις) και το ξαναϋπολογίζει με ΠΡΑΓΜΑΤΙΚΕΣ τιμές.
-
-    Το κρίσιμο: ψάχνουμε live τιμές ΜΟΝΟ για τα υλικά που πραγματικά
-    εμφανίζονται στη λίστα ψωνιών αυτού του συγκεκριμένου πλάνου (συνήθως
-    15-25), όχι για ΟΛΗ τη βάση συνταγών (~45) -- πολύ πιο γρήγορο.
-    """
-    # πρώτο, "φτηνό" πέρασμα μόνο για να δούμε ποια υλικά χρειαζόμαστε
     interim = assemble_plan(
         plan_ids, data, household_size, gender, diet_type, supermarket,
         weekly_budget, excluded_ingredients, max_daily_kcal, meal_pools,
-        apply_repairs=False, live_prices=None,
+        apply_repairs=False, live_prices=None, gluten_free=gluten_free,
     )
     needed_names = [item["name"] for item in interim["shopping_list"]]
     live_prices = get_live_prices_bulk(needed_names, supermarket)
 
-    # Σημαντικό: ξανατρέχουμε τον έλεγχο budget (apply_repairs=True) ΤΩΡΑ που
-    # έχουμε τις πραγματικές τιμές -- αλλιώς το πλάνο μπορεί να ξεφύγει πολύ
-    # από το budget αν οι live τιμές είναι αρκετά διαφορετικές από τις εκτιμήσεις.
     return assemble_plan(
         plan_ids, data, household_size, gender, diet_type, supermarket,
         weekly_budget, excluded_ingredients, max_daily_kcal, meal_pools,
-        apply_repairs=True, live_prices=live_prices,
+        apply_repairs=True, live_prices=live_prices, gluten_free=gluten_free,
     )
 
 
@@ -379,9 +392,11 @@ def get_meal_alternative(
     household_size: int,
     gender: str,
     excluded_ingredients: list,
+    gluten_free: bool = False,
 ):
     data = load_recipes()
     pool = filter_by_diet(data[MEAL_DATA_KEY[meal]], diet_type)
+    pool = filter_gluten_free(pool, gluten_free)
     pool = filter_by_exclusions(pool, excluded_ingredients) or pool
 
     alternatives = [r for r in pool if r["id"] != current_recipe_id]
@@ -425,8 +440,6 @@ def build_shopping_list(plan, data, household_size: int, gender: str, live_price
             "package_size": vals["package_size"],
             "lasts_weeks": weeks,
             "full_purchase_cost": full_purchase_cost,
-            # estimated_cost = αυτό που μετράει στο ΕΒΔΟΜΑΔΙΑΙΟ σύνολο/budget.
-            # Για φρέσκα προϊόντα (weeks=1) είναι ίδιο με το full_purchase_cost.
             "estimated_cost": weekly_share_cost,
         })
 

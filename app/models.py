@@ -12,24 +12,16 @@ class SuggestRequest(BaseModel):
         "female", description="Χρησιμοποιείται για προσαρμογή μερίδας/ποσοτήτων"
     )
     supermarket: Literal["sklavenitis", "mymarket"] = Field(
-        "sklavenitis", description="Σούπερ μάρκετ αναφοράς για τις τιμές (placeholder προς το παρόν)"
+        "sklavenitis", description="Σούπερ μάρκετ αναφοράς για τις τιμές"
     )
-    excluded_ingredients: list[str] = Field(
-        default_factory=list,
-        description="Τροφές προς αποφυγή (αλλεργίες/δυσανεξίες/απλή προτίμηση), π.χ. ['γάλα', 'ξηροί καρποί']"
-    )
-    max_daily_kcal: Optional[float] = Field(
-        None, gt=0, description="Προαιρετικό ανώτατο όριο ημερήσιων θερμίδων"
-    )
-    use_live_prices: bool = Field(
-        True, description="Αν True, ψάχνει ζωντανές τιμές από το επιλεγμένο σούπερ μάρκετ"
-    )
+    excluded_ingredients: list[str] = Field(default_factory=list)
+    max_daily_kcal: Optional[float] = Field(None, gt=0)
+    gluten_free: bool = Field(False, description="Αν True, μόνο συνταγές χωρίς γλουτένη")
+    use_live_prices: bool = Field(True)
 
 
 class SwapMealRequest(BaseModel):
-    plan_recipe_ids: Dict[str, Dict[str, str]] = Field(
-        ..., description="Τρέχον πλάνο: {ημέρα: {γεύμα: recipe_id}}"
-    )
+    plan_recipe_ids: Dict[str, Dict[str, str]] = Field(...)
     day: str
     meal: str
     diet_type: Literal["classic", "vegetarian", "vegan"] = "classic"
@@ -39,4 +31,5 @@ class SwapMealRequest(BaseModel):
     weekly_budget: float = Field(..., gt=0)
     excluded_ingredients: list[str] = Field(default_factory=list)
     max_daily_kcal: Optional[float] = Field(None, gt=0)
+    gluten_free: bool = False
     use_live_prices: bool = True
