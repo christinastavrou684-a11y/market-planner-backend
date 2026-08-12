@@ -306,6 +306,11 @@ def _repair_budget(plan, meal_pools, household_size, gender, weekly_budget, live
 
 
 def _repair_calories(plan, meal_pools, household_size, gender, max_daily_kcal, live_prices=None):
+    usage_count = {meal: defaultdict(int) for meal in MEAL_ORDER}
+    for day in DAYS:
+        for meal in MEAL_ORDER:
+            usage_count[meal][plan[day][meal]["recipe_id"]] += 1
+
     for day in DAYS:
         day_total = sum(plan[day][meal]["kcal"] for meal in MEAL_ORDER)
         if day_total <= max_daily_kcal:
@@ -315,11 +320,18 @@ def _repair_calories(plan, meal_pools, household_size, gender, max_daily_kcal, l
             if day_total <= max_daily_kcal:
                 break
             pool = meal_pools[meal]
-            lightest = min(pool, key=lambda r: recipe_kcal(r, gender))
+            current_id = plan[day][meal]["recipe_id"]
+
+            under_cap = [r for r in pool if usage_count[meal][r["id"]] < MAX_REPEATS_PER_WEEK]
+            candidates_pool = under_cap if under_cap else pool
+
+            lightest = min(candidates_pool, key=lambda r: recipe_kcal(r, gender))
             lightest_kcal = recipe_kcal(lightest, gender)
             current_kcal = plan[day][meal]["kcal"]
             if lightest_kcal < current_kcal:
                 day_total = day_total - current_kcal + lightest_kcal
+                usage_count[meal][current_id] -= 1
+                usage_count[meal][lightest["id"]] += 1
                 plan[day][meal] = {
                     "recipe_id": lightest["id"],
                     "name": lightest["name"],
