@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top">
+    <div class="top-inner">
+      <span class="brand">market<em>planner</em></span>
+      <span class="tag">εβδομαδιαίο πλάνο, βάσει budget</span>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <section class="panel form-panel">
+      <h1>Πες μας το budget σου</h1>
+      <p class="sub">Φτιάχνουμε πλάνο γευμάτων για 7 μέρες και τη λίστα ψωνιών σου.</p>
+
+      <form id="suggest-form">
+        <label class="field">
+          <span>Εβδομαδιαίο budget (€)</span>
+          <input type="number" id="weekly_budget" min="1" step="1" value="60" required>
+        </label>
+
+        <label class="field">
+          <span>Άτομα στο νοικοκυριό</span>
+          <input type="number" id="household_size" min="1" step="1" value="2" required>
+        </label>
+
+        <label class="field">
+          <span>Τύπος διατροφής</span>
+          <select id="diet_type">
+            <option value="classic">Κλασική</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Φύλο</span>
+          <select id="gender">
+            <option value="female">Γυναίκα</option>
+            <option value="male">Άντρας</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Σούπερ μάρκετ</span>
+          <select id="supermarket">
+            <option value="sklavenitis">Σκλαβενίτης</option>
+            <option value="mymarket">My Market</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Τροφές προς αποφυγή <em class="optional">(προαιρετικό)</em></span>
+          <input type="text" id="excluded_ingredients" placeholder="π.χ. γαλοπούλα, ξηροί καρποί">
+        </label>
+
+        <label class="field">
+          <span>Μέγιστες ημερήσιες θερμίδες <em class="optional">(προαιρετικό)</em></span>
+          <input type="number" id="max_daily_kcal" min="800" step="50" placeholder="π.χ. 2000">
+        </label>
+
+        <button type="submit" id="submit-btn">Φτιάξε το πλάνο μου</button>
+      </form>
+
+      <p class="error" id="error-msg" hidden></p>
+    </section>
+
+    <section class="panel result-panel" id="result-panel" hidden>
+
+      <p class="plan-note" id="plan-note"></p>
+
+      <div class="plan-block">
+        <h2 id="plan-heading">Το πλάνο της εβδομάδας</h2>
+        <div class="days" id="days-container"></div>
+      </div>
+
+      <div class="receipt" id="receipt">
+        <div class="receipt-notch top"></div>
+        <div class="receipt-body">
+          <div class="receipt-header">
+            <div class="store-name">ΛΙΣΤΑ ΨΩΝΙΩΝ</div>
+            <div class="receipt-meta" id="receipt-meta"></div>
+          </div>
+          <div class="receipt-line dashed"></div>
+          <div class="receipt-items" id="receipt-items"></div>
+          <div class="receipt-line dashed"></div>
+          <div class="receipt-total" id="receipt-total"></div>
+          <div class="receipt-line dashed"></div>
+          <div class="receipt-footer" id="receipt-footer"></div>
+        </div>
+        <div class="receipt-notch bottom"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,967 @@
+{
+  "breakfast": [
+    {
+      "id": "b1",
+      "name": "Γάλα με δημητριακά",
+      "diet_types": [
+        "classic",
+        "vegetarian"
+      ],
+      "ingredients": [
+        {
+          "name": "Γάλα",
+          "quantity_per_person": 0.25,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 1.1,
+          "kcal_per_unit": 640
+        },
+        {
+          "name": "Δημητριακά",
+          "quantity_per_person": 0.05,
+          "unit": "kg",
+          "package_size": 0.375,
+          "package_unit": "kg",
+          "package_cost": 3.2,
+          "kcal_per_unit": 3800,
+          "weeks_per_package": 2
+        }
+      ]
+    },
+    {
+      "id": "b2",
+      "name": "Τοστ με τυρί & γαλοπούλα",
+      "diet_types": [
+        "classic"
+      ],
+      "ingredients": [
+        {
+          "name": "Ψωμί τοστ",
+          "quantity_per_person": 0.06,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 2.2,
+          "kcal_per_unit": 2650
+        },
+        {
+          "name": "Τυρί τοστ",
+          "quantity_per_person": 0.04,
+          "unit": "kg",
+          "package_size": 0.2,
+          "package_unit": "kg",
+          "package_cost": 3.0,
+          "kcal_per_unit": 3300
+        },
+        {
+          "name": "Γαλοπούλα",
+          "quantity_per_person": 0.04,
+          "unit": "kg",
+          "package_size": 0.15,
+          "package_unit": "kg",
+          "package_cost": 3.5,
+          "kcal_per_unit": 1100
+        }
+      ]
+    },
+    {
+      "id": "b3",
+      "name": "Αυγά με ψωμί",
+      "diet_types": [
+        "classic",
+        "vegetarian"
+      ],
+      "ingredients": [
+        {
+          "name": "Αυγά",
+          "quantity_per_person": 2,
+          "unit": "τεμ",
+          "package_size": 6,
+          "package_unit": "τεμ",
+          "package_cost": 1.8,
+          "kcal_per_unit": 70
+        },
+        {
+          "name": "Ψωμί",
+          "quantity_per_person": 0.08,
+          "unit": "kg",
+          "package_size": 0.4,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 2500
+        }
+      ]
+    },
+    {
+      "id": "b4",
+      "name": "Γιαούρτι με μέλι & καρύδια",
+      "diet_types": [
+        "classic",
+        "vegetarian"
+      ],
+      "ingredients": [
+        {
+          "name": "Γιαούρτι",
+          "quantity_per_person": 0.2,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 4.2,
+          "kcal_per_unit": 1000
+        },
+        {
+          "name": "Μέλι",
+          "quantity_per_person": 0.02,
+          "unit": "kg",
+          "package_size": 0.45,
+          "package_unit": "kg",
+          "package_cost": 5.5,
+          "kcal_per_unit": 3040,
+          "weeks_per_package": 6
+        },
+        {
+          "name": "Καρύδια",
+          "quantity_per_person": 0.02,
+          "unit": "kg",
+          "package_size": 0.2,
+          "package_unit": "kg",
+          "package_cost": 4.5,
+          "kcal_per_unit": 6540,
+          "weeks_per_package": 3
+        }
+      ]
+    },
+    {
+      "id": "b5",
+      "name": "Κουλούρι Θεσσαλονίκης με τυρί",
+      "diet_types": [
+        "classic",
+        "vegetarian"
+      ],
+      "ingredients": [
+        {
+          "name": "Κουλούρι",
+          "quantity_per_person": 1,
+          "unit": "τεμ",
+          "package_size": 1,
+          "package_unit": "τεμ",
+          "package_cost": 0.9,
+          "kcal_per_unit": 230
+        },
+        {
+          "name": "Τυρί",
+          "quantity_per_person": 0.03,
+          "unit": "kg",
+          "package_size": 0.2,
+          "package_unit": "kg",
+          "package_cost": 3.2,
+          "kcal_per_unit": 3200
+        }
+      ]
+    },
+    {
+      "id": "b6",
+      "name": "Smoothie φρούτων με βρώμη",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Μπανάνα",
+          "quantity_per_person": 1,
+          "unit": "τεμ",
+          "package_size": 1,
+          "package_unit": "τεμ",
+          "package_cost": 0.35,
+          "kcal_per_unit": 105
+        },
+        {
+          "name": "Φυτικό γάλα",
+          "quantity_per_person": 0.2,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 1.8,
+          "kcal_per_unit": 450
+        },
+        {
+          "name": "Βρώμη",
+          "quantity_per_person": 0.04,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 2.2,
+          "kcal_per_unit": 3890,
+          "weeks_per_package": 3
+        }
+      ]
+    }
+  ],
+  "snacks": [
+    {
+      "id": "s1",
+      "name": "Φρούτο εποχής",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Φρούτα εποχής",
+          "quantity_per_person": 0.15,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 2.0,
+          "kcal_per_unit": 520
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "name": "Γιαούρτι με μέλι (light)",
+      "diet_types": [
+        "classic",
+        "vegetarian"
+      ],
+      "ingredients": [
+        {
+          "name": "Γιαούρτι",
+          "quantity_per_person": 0.15,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 4.2,
+          "kcal_per_unit": 1000
+        },
+        {
+          "name": "Μέλι",
+          "quantity_per_person": 0.01,
+          "unit": "kg",
+          "package_size": 0.45,
+          "package_unit": "kg",
+          "package_cost": 5.5,
+          "kcal_per_unit": 3040,
+          "weeks_per_package": 6
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "name": "Χούφτα ξηροί καρποί",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Καρύδια",
+          "quantity_per_person": 0.03,
+          "unit": "kg",
+          "package_size": 0.2,
+          "package_unit": "kg",
+          "package_cost": 4.5,
+          "kcal_per_unit": 6540,
+          "weeks_per_package": 3
+        }
+      ]
+    },
+    {
+      "id": "s4",
+      "name": "Παξιμάδι με ελαιόλαδο & ντομάτα",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Παξιμάδι",
+          "quantity_per_person": 0.05,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 2.2,
+          "kcal_per_unit": 3350,
+          "weeks_per_package": 3
+        },
+        {
+          "name": "Ντομάτες",
+          "quantity_per_person": 0.1,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 2.2,
+          "kcal_per_unit": 180
+        },
+        {
+          "name": "Ελαιόλαδο",
+          "quantity_per_person": 0.01,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 7.5,
+          "kcal_per_unit": 8130,
+          "weeks_per_package": 4
+        }
+      ]
+    },
+    {
+      "id": "s5",
+      "name": "Ρυζογκοφρέτες με φυστικοβούτυρο",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Ρυζογκοφρέτες",
+          "quantity_per_person": 0.03,
+          "unit": "kg",
+          "package_size": 0.1,
+          "package_unit": "kg",
+          "package_cost": 1.5,
+          "kcal_per_unit": 3870,
+          "weeks_per_package": 2
+        },
+        {
+          "name": "Φυστικοβούτυρο",
+          "quantity_per_person": 0.02,
+          "unit": "kg",
+          "package_size": 0.35,
+          "package_unit": "kg",
+          "package_cost": 4.5,
+          "kcal_per_unit": 5880,
+          "weeks_per_package": 4
+        }
+      ]
+    },
+    {
+      "id": "s6",
+      "name": "Mini smoothie φρούτων",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Μπανάνα",
+          "quantity_per_person": 1,
+          "unit": "τεμ",
+          "package_size": 1,
+          "package_unit": "τεμ",
+          "package_cost": 0.35,
+          "kcal_per_unit": 105
+        },
+        {
+          "name": "Φυτικό γάλα",
+          "quantity_per_person": 0.15,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 1.8,
+          "kcal_per_unit": 450
+        }
+      ]
+    },
+    {
+      "id": "s7",
+      "name": "Κράκερς με τυρί",
+      "diet_types": [
+        "classic",
+        "vegetarian"
+      ],
+      "ingredients": [
+        {
+          "name": "Κράκερς",
+          "quantity_per_person": 0.03,
+          "unit": "kg",
+          "package_size": 0.25,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 4300,
+          "weeks_per_package": 2
+        },
+        {
+          "name": "Τυρί",
+          "quantity_per_person": 0.03,
+          "unit": "kg",
+          "package_size": 0.2,
+          "package_unit": "kg",
+          "package_cost": 3.2,
+          "kcal_per_unit": 3200
+        }
+      ]
+    },
+    {
+      "id": "s8",
+      "name": "Ξηρά φρούτα",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Ξηρά φρούτα",
+          "quantity_per_person": 0.04,
+          "unit": "kg",
+          "package_size": 0.25,
+          "package_unit": "kg",
+          "package_cost": 3.5,
+          "kcal_per_unit": 3000,
+          "weeks_per_package": 3
+        }
+      ]
+    }
+  ],
+  "lunch": [
+    {
+      "id": "l1",
+      "name": "Κοτόπουλο με πατάτες φούρνου",
+      "diet_types": [
+        "classic"
+      ],
+      "ingredients": [
+        {
+          "name": "Κοτόπουλο μπούτι",
+          "quantity_per_person": 0.25,
+          "unit": "kg",
+          "package_size": 0.6,
+          "package_unit": "kg",
+          "package_cost": 5.5,
+          "kcal_per_unit": 2150
+        },
+        {
+          "name": "Πατάτες",
+          "quantity_per_person": 0.3,
+          "unit": "kg",
+          "package_size": 2,
+          "package_unit": "kg",
+          "package_cost": 2.2,
+          "kcal_per_unit": 770
+        },
+        {
+          "name": "Ελαιόλαδο",
+          "quantity_per_person": 0.02,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 7.5,
+          "kcal_per_unit": 8130,
+          "weeks_per_package": 4
+        }
+      ]
+    },
+    {
+      "id": "l2",
+      "name": "Μακαρόνια με κιμά",
+      "diet_types": [
+        "classic"
+      ],
+      "ingredients": [
+        {
+          "name": "Μακαρόνια",
+          "quantity_per_person": 0.1,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 1.2,
+          "kcal_per_unit": 3500,
+          "weeks_per_package": 2
+        },
+        {
+          "name": "Κιμάς μοσχαρίσιος",
+          "quantity_per_person": 0.15,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 5.8,
+          "kcal_per_unit": 2500
+        },
+        {
+          "name": "Σάλτσα ντομάτας",
+          "quantity_per_person": 0.15,
+          "unit": "kg",
+          "package_size": 0.4,
+          "package_unit": "kg",
+          "package_cost": 1.2,
+          "kcal_per_unit": 600,
+          "weeks_per_package": 2
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "name": "Φακές",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Φακές",
+          "quantity_per_person": 0.12,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 3520,
+          "weeks_per_package": 3
+        },
+        {
+          "name": "Κρεμμύδι",
+          "quantity_per_person": 0.05,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 1.2,
+          "kcal_per_unit": 400
+        },
+        {
+          "name": "Ελαιόλαδο",
+          "quantity_per_person": 0.02,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 7.5,
+          "kcal_per_unit": 8130,
+          "weeks_per_package": 4
+        }
+      ]
+    },
+    {
+      "id": "l4",
+      "name": "Γεμιστά",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Ντομάτες",
+          "quantity_per_person": 0.35,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 2.2,
+          "kcal_per_unit": 180
+        },
+        {
+          "name": "Ρύζι",
+          "quantity_per_person": 0.08,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 3650,
+          "weeks_per_package": 3
+        },
+        {
+          "name": "Ελαιόλαδο",
+          "quantity_per_person": 0.03,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 7.5,
+          "kcal_per_unit": 8130,
+          "weeks_per_package": 4
+        }
+      ]
+    },
+    {
+      "id": "l5",
+      "name": "Ψάρι με σαλάτα",
+      "diet_types": [
+        "classic"
+      ],
+      "ingredients": [
+        {
+          "name": "Φιλέτο ψάρι",
+          "quantity_per_person": 0.2,
+          "unit": "kg",
+          "package_size": 0.3,
+          "package_unit": "kg",
+          "package_cost": 6.5,
+          "kcal_per_unit": 1050
+        },
+        {
+          "name": "Σαλάτα εποχής",
+          "quantity_per_person": 0.15,
+          "unit": "kg",
+          "package_size": 0.3,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 150
+        }
+      ]
+    },
+    {
+      "id": "l6",
+      "name": "Ρεβίθια",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Ρεβίθια",
+          "quantity_per_person": 0.12,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 1.9,
+          "kcal_per_unit": 3640,
+          "weeks_per_package": 3
+        },
+        {
+          "name": "Ελαιόλαδο",
+          "quantity_per_person": 0.02,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 7.5,
+          "kcal_per_unit": 8130,
+          "weeks_per_package": 4
+        },
+        {
+          "name": "Λεμόνι",
+          "quantity_per_person": 0.05,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 1.0,
+          "kcal_per_unit": 290
+        }
+      ]
+    },
+    {
+      "id": "l7",
+      "name": "Μπριζόλα χοιρινή με ρύζι",
+      "diet_types": [
+        "classic"
+      ],
+      "ingredients": [
+        {
+          "name": "Μπριζόλα χοιρινή",
+          "quantity_per_person": 0.25,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 4.2,
+          "kcal_per_unit": 2420
+        },
+        {
+          "name": "Ρύζι",
+          "quantity_per_person": 0.08,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 3650,
+          "weeks_per_package": 3
+        }
+      ]
+    },
+    {
+      "id": "l8",
+      "name": "Πράσο με ρύζι (λαδερό)",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Πράσα",
+          "quantity_per_person": 0.3,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 1.9,
+          "kcal_per_unit": 610
+        },
+        {
+          "name": "Ρύζι",
+          "quantity_per_person": 0.06,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 3650,
+          "weeks_per_package": 3
+        },
+        {
+          "name": "Ελαιόλαδο",
+          "quantity_per_person": 0.02,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 7.5,
+          "kcal_per_unit": 8130,
+          "weeks_per_package": 4
+        }
+      ]
+    }
+  ],
+  "dinner": [
+    {
+      "id": "d1",
+      "name": "Ομελέτα με λαχανικά",
+      "diet_types": [
+        "classic",
+        "vegetarian"
+      ],
+      "ingredients": [
+        {
+          "name": "Αυγά",
+          "quantity_per_person": 2,
+          "unit": "τεμ",
+          "package_size": 6,
+          "package_unit": "τεμ",
+          "package_cost": 1.8,
+          "kcal_per_unit": 70
+        },
+        {
+          "name": "Πιπεριά",
+          "quantity_per_person": 0.08,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 1.5,
+          "kcal_per_unit": 310
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "name": "Σούπα λαχανικών",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Λαχανικά σούπας (μείγμα)",
+          "quantity_per_person": 0.3,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 1.6,
+          "kcal_per_unit": 350
+        },
+        {
+          "name": "Ελαιόλαδο",
+          "quantity_per_person": 0.015,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 7.5,
+          "kcal_per_unit": 8130,
+          "weeks_per_package": 4
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "name": "Τυρόπιτα με σαλάτα",
+      "diet_types": [
+        "classic",
+        "vegetarian"
+      ],
+      "ingredients": [
+        {
+          "name": "Τυρόπιτα",
+          "quantity_per_person": 0.15,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 4.5,
+          "kcal_per_unit": 2900
+        },
+        {
+          "name": "Σαλάτα εποχής",
+          "quantity_per_person": 0.1,
+          "unit": "kg",
+          "package_size": 0.3,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 150
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "name": "Γιαούρτι με φρούτα",
+      "diet_types": [
+        "classic",
+        "vegetarian"
+      ],
+      "ingredients": [
+        {
+          "name": "Γιαούρτι",
+          "quantity_per_person": 0.2,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 4.2,
+          "kcal_per_unit": 1000
+        },
+        {
+          "name": "Φρούτα εποχής",
+          "quantity_per_person": 0.2,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 2.0,
+          "kcal_per_unit": 520
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "name": "Τοστ λαχανικών",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Ψωμί τοστ",
+          "quantity_per_person": 0.06,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 2.2,
+          "kcal_per_unit": 2650
+        },
+        {
+          "name": "Λαχανικά (πιπεριά/ντομάτα)",
+          "quantity_per_person": 0.1,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 250
+        }
+      ]
+    },
+    {
+      "id": "d6",
+      "name": "Χούμους με λαχανικά",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Χούμους",
+          "quantity_per_person": 0.1,
+          "unit": "kg",
+          "package_size": 0.2,
+          "package_unit": "kg",
+          "package_cost": 2.2,
+          "kcal_per_unit": 1660
+        },
+        {
+          "name": "Καρότο/Αγγούρι",
+          "quantity_per_person": 0.15,
+          "unit": "kg",
+          "package_size": 1,
+          "package_unit": "kg",
+          "package_cost": 1.6,
+          "kcal_per_unit": 200
+        }
+      ]
+    },
+    {
+      "id": "d7",
+      "name": "Ζυμαρικό με ελαιόλαδο & λαχανικά",
+      "diet_types": [
+        "classic",
+        "vegetarian",
+        "vegan"
+      ],
+      "ingredients": [
+        {
+          "name": "Μακαρόνια",
+          "quantity_per_person": 0.08,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 1.2,
+          "kcal_per_unit": 3500,
+          "weeks_per_package": 2
+        },
+        {
+          "name": "Λαχανικά (μείγμα)",
+          "quantity_per_person": 0.15,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 1.8,
+          "kcal_per_unit": 350
+        },
+        {
+          "name": "Ελαιόλαδο",
+          "quantity_per_person": 0.02,
+          "unit": "l",
+          "package_size": 1,
+          "package_unit": "l",
+          "package_cost": 7.5,
+          "kcal_per_unit": 8130,
+          "weeks_per_package": 4
+        }
+      ]
+    },
+    {
+      "id": "d8",
+      "name": "Σάντουιτς γαλοπούλα",
+      "diet_types": [
+        "classic"
+      ],
+      "ingredients": [
+        {
+          "name": "Ψωμί σάντουιτς",
+          "quantity_per_person": 0.06,
+          "unit": "kg",
+          "package_size": 0.5,
+          "package_unit": "kg",
+          "package_cost": 2.2,
+          "kcal_per_unit": 2650
+        },
+        {
+          "name": "Γαλοπούλα",
+          "quantity_per_person": 0.05,
+          "unit": "kg",
+          "package_size": 0.15,
+          "package_unit": "kg",
+          "package_cost": 3.5,
+          "kcal_per_unit": 1100
+        },
+        {
+          "name": "Τυρί",
+          "quantity_per_person": 0.03,
+          "unit": "kg",
+          "package_size": 0.2,
+          "package_unit": "kg",
+          "package_cost": 3.2,
+          "kcal_per_unit": 3200
+        }
+      ]
+    }
+  ]
+}
